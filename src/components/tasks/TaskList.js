@@ -6,7 +6,7 @@ export const TaskList = () => {
     })
 
     getTasks = () =>{
-        axios.get()
+        const get = axios.get(/tasks)
     }
 
     return (
