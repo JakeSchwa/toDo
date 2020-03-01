@@ -9,7 +9,7 @@ const TaskList = () => {
 
   const getTasks = async () => {
     console.log("Inside getTasks");
-    const res = await fetch("http://localhost:5000/tasks");
+    const res = await fetch("/tasks");
     const data = await res.json();
     console.log(data);
     setData(data);
