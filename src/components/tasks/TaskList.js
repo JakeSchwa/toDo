@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
 const TaskList = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    getTasks();
-  }, []);
+    getTasks()
+  }, [])
 
   const getTasks = async () => {
-    const res = await fetch("/tasks");
-    const data = await res.json();
-    setData(data);
-  };
+    const res = await fetch('/tasks')
+    const data = await res.json()
+    setData(data)
+  }
 
   const displayTasks = () => {
-    return data.map(item => <li key={item.id}>{item.description}</li>);
-  };
+    return data.map(item => <li key={item.id}>{item.description}</li>)
+  }
 
   return (
     <div id='taskList'>
@@ -26,7 +26,7 @@ const TaskList = () => {
         {displayTasks()}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default TaskList;
+export default TaskList

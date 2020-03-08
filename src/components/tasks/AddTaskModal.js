@@ -1,45 +1,45 @@
-import React, { useState } from "react";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React, { useState } from 'react'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 const AddTaskModal = () => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('')
 
   const addTask = async task => {
     try {
-      const res = await fetch("/tasks", {
-        method: "POST",
+      const res = await fetch('/tasks', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(task)
-      });
-      const data = await res.json();
-      console.log(data);
+      })
+      const data = await res.json()
+      console.log(data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const onSubmit = () => {
-    if (description === "") {
-      M.toast({ html: "Please enter a description for the todo" });
+    if (description === '') {
+      M.toast({ html: 'Please enter a description for the todo' })
     } else {
       const newTask = {
         completed: false,
         description
-      };
+      }
 
-      addTask(newTask);
+      addTask(newTask)
 
-      M.toast({ html: "Todo added successfully" });
+      M.toast({ html: 'Todo added successfully' })
 
       // clear fields
-      setDescription("");
+      setDescription('')
     }
-  };
+  }
 
   return (
-    <div id='add-task-modal' className='modal' style={modalStyle}>
+    <div id='add-task-modal' className='modal'>
       <div className='modal-content'>
         <h4>Enter New Todo</h4>
         <div className='row'>
@@ -66,12 +66,7 @@ const AddTaskModal = () => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const modalStyle = {
-  width: "75%",
-  height: "75%"
-};
-
-export default AddTaskModal;
+export default AddTaskModal
