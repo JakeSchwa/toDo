@@ -39,7 +39,7 @@ const AddTaskModal = () => {
   }
 
   return (
-    <div id="add-task-modal" className="modal" style={modalStyle}>
+    <div id="add-task-modal" className="modal">
       <div className="modal-content">
         <h4>Enter New Todo</h4>
         <div className="row">
@@ -67,11 +67,6 @@ const AddTaskModal = () => {
       </div>
     </div>
   )
-}
-
-const modalStyle = {
-  width: '30%',
-  height: '30%',
 }
 
 export default AddTaskModal
