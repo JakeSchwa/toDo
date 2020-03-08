@@ -12,6 +12,9 @@ const TaskItem = ({ description }) => {
         <a href="#!" className="secondary-content">
           <i className="material-icons">delete</i>
         </a>
+        <a href="#!" className="secondary-content">
+          <i className="material-icons">edit</i>
+        </a>
       </div>
     </li>
   )
