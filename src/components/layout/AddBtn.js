@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const AddBtn = () => {
   return (
@@ -10,7 +10,7 @@ const AddBtn = () => {
         <i className='material-icons large'>add</i>
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default AddBtn;
+export default AddBtn
