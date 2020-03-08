@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TaskItem = ({ description }) => {
   return (
@@ -8,9 +9,16 @@ const TaskItem = ({ description }) => {
         <a href="#!" className="secondary-content">
           <i className="material-icons">send</i>
         </a>
+        <a href="#!" className="secondary-content">
+          <i className="material-icons">delete</i>
+        </a>
       </div>
     </li>
   )
+}
+
+TaskItem.propTypes = {
+  description: PropTypes.string.isRequired,
 }
 
 export default TaskItem
