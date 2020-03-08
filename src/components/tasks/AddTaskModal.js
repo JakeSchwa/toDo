@@ -1,77 +1,77 @@
-import React, { useState } from "react";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React, { useState } from 'react'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 const AddTaskModal = () => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('')
 
   const addTask = async task => {
     try {
-      const res = await fetch("/tasks", {
-        method: "POST",
+      const res = await fetch('/tasks', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(task)
-      });
-      const data = await res.json();
-      console.log(data);
+        body: JSON.stringify(task),
+      })
+      const data = await res.json()
+      console.log(data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const onSubmit = () => {
-    if (description === "") {
-      M.toast({ html: "Please enter a description for the todo" });
+    if (description === '') {
+      M.toast({ html: 'Please enter a description for the todo' })
     } else {
       const newTask = {
         completed: false,
-        description
-      };
+        description,
+      }
 
-      addTask(newTask);
+      addTask(newTask)
 
-      M.toast({ html: "Todo added successfully" });
+      M.toast({ html: 'Todo added successfully' })
 
       // clear fields
-      setDescription("");
+      setDescription('')
     }
-  };
+  }
 
   return (
-    <div id='add-task-modal' className='modal' style={modalStyle}>
-      <div className='modal-content'>
+    <div id="add-task-modal" className="modal" style={modalStyle}>
+      <div className="modal-content">
         <h4>Enter New Todo</h4>
-        <div className='row'>
-          <div className='input-field'>
+        <div className="row">
+          <div className="input-field">
             <input
-              type='text'
-              name='description'
+              type="text"
+              name="description"
               value={description}
               onChange={e => setDescription(e.target.value)}
             />
-            <label htmlFor='message' className='active'>
+            <label htmlFor="message" className="active">
               Todo Description
             </label>
           </div>
         </div>
       </div>
-      <div className='modal-footer'>
+      <div className="modal-footer">
         <a
-          href='#!'
+          href="#!"
           onClick={onSubmit}
-          className='modal-close waves-effect blue btn'
+          className="modal-close waves-effect blue btn"
         >
           Enter
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const modalStyle = {
-  width: "75%",
-  height: "75%"
-};
+  width: '30%',
+  height: '30%',
+}
 
-export default AddTaskModal;
+export default AddTaskModal
