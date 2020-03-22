@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 //import Preloader from "../layout/Preloader";
 import PropTypes from 'prop-types'
 import { getTasks } from '../../actions/taskActions'
+import Preloader from '../layout/Preloader'
 
 const TaskList = ({ task: { tasks, loading }, getTasks }) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const TaskList = ({ task: { tasks, loading }, getTasks }) => {
   }
 
   if (loading || tasks === null) {
-    return <div>LOADING...</div>
+    return <Preloader />
   }
 
   return (

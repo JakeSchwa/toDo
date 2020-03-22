@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 
 const AddTaskModal = ({ addTask }) => {
   const [description, setDescription] = useState('')
+  const [isTask, setIsTask] = useState(true)
 
   const onSubmit = () => {
     if (description === '') {
@@ -42,13 +43,27 @@ const AddTaskModal = ({ addTask }) => {
           <div className="input-field">
             <input
               type="text"
-              name="description"
               placeholder="Description"
+              name="Description"
               value={description}
               onChange={e => setDescription(e.target.value)}
               onKeyPress={handleKeyPress}
             />
           </div>
+        </div>
+        <div className="row">
+          <div className="switch">
+            <label>
+              Task
+              <input type="checkbox" onChange={() => setIsTask(!isTask)} />
+              <span className="lever"></span>
+              Event
+            </label>
+          </div>
+        </div>
+        <div className="row">
+          <label>{isTask ? 'Due Date' : 'Event Date'}</label>
+          <input placeholder="Pick a date" type="text" className="datepicker" />
         </div>
       </div>
       <div className="modal-footer">
