@@ -17,8 +17,8 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Container fixed>
-        <Navbar />
+      <Navbar />
+      <Container>
         <TaskList />
         {/* <AddBtn />
         <AddTaskModal />
