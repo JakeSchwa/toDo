@@ -16,8 +16,8 @@ const TaskItem = ({ task }) => {
   // }
 
   return (
-    <ListItem>
-      <Card key={id} button role={undefined} onClick={null}>
+    <ListItem button>
+      <Card key={id} style={{ width: '100%' }}>
         <CardContent>{description}</CardContent>
       </Card>
     </ListItem>
@@ -29,7 +29,5 @@ TaskItem.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   setCurrent: PropTypes.func.isRequired,
 }
-
-// TaskItem
 
 export default connect(null, { setCurrent })(TaskItem)

@@ -19,7 +19,7 @@ const TaskList = ({ task: { tasks, loading }, getTasks }) => {
     return "loading..."
   }
 
-  return <List className="todoList">{displayTasks()}</List>
+  return <List>{displayTasks()}</List>
 }
 
 TaskList.propTypes = {
