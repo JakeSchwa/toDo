@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import TaskItem from './TaskItem'
+import { connect } from 'react-redux'
+//import Preloader from "../layout/Preloader";
+import PropTypes from 'prop-types'
+import { getTasks } from '../../actions/taskActions'
 
-const TaskList = () => {
-  const [data, setData] = useState([])
-
+const TaskList = ({ task: { tasks, loading }, getTasks }) => {
   useEffect(() => {
     getTasks()
+    // eslint-disable-next-line
   }, [])
 
-  const getTasks = async () => {
-    const res = await fetch('/tasks')
-    const data = await res.json()
-    setData(data)
+  const displayTasks = () => {
+    return tasks.map(task => <TaskItem task={task} key={task.id} />)
   }
 
-  const displayTasks = () => {
-    return data.map(item => (
-      <TaskItem key={item.id} description={item.description} />
-    ))
+  if (loading || tasks === null) {
+    return <div>LOADING...</div>
   }
 
   return (
@@ -30,4 +29,13 @@ const TaskList = () => {
   )
 }
 
-export default TaskList
+TaskList.propTypes = {
+  task: PropTypes.object.isRequired,
+  getTasks: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  task: state.task,
+})
+
+export default connect(mapStateToProps, { getTasks })(TaskList)

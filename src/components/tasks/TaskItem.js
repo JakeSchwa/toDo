@@ -1,27 +1,46 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { deleteTask, setCurrent } from '../../actions/taskActions'
+import M from 'materialize-css/dist/js/materialize.min.js'
+import EditTaskModal from './EditTaskModal'
 import PropTypes from 'prop-types'
 
-const TaskItem = ({ description }) => {
+const TaskItem = ({ task, deleteTask, setCurrent }) => {
+  const { id, description } = task
+  const onDelete = () => {
+    deleteTask(id)
+    M.toast({ html: 'Task Deleted' })
+  }
+
   return (
-    <li className="collection-item">
-      <div>
-        <a href="#!">{description}</a>
-        <a href="#!" className="secondary-content">
-          <i className="material-icons">send</i>
-        </a>
-        <a href="#!" className="secondary-content">
-          <i className="material-icons">delete</i>
-        </a>
-        <a href="#!" className="secondary-content">
-          <i className="material-icons">edit</i>
-        </a>
-      </div>
-    </li>
+    <div>
+      <EditTaskModal />
+      <li className="collection-item">
+        <div>
+          <a href="#!">{description}</a>
+          <a href="#!" className="secondary-content">
+            <i className="material-icons">send</i>
+          </a>
+          <a href="#!" onClick={onDelete} className="secondary-content">
+            <i className="material-icons">delete</i>
+          </a>
+          <a
+            href="#edit-task-modal"
+            onClick={() => setCurrent(task)}
+            className="secondary-content"
+          >
+            <i className="material-icons">edit</i>
+          </a>
+        </div>
+      </li>
+    </div>
   )
 }
 
 TaskItem.propTypes = {
-  description: PropTypes.string.isRequired,
+  task: PropTypes.object.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired,
 }
 
-export default TaskItem
+export default connect(null, { deleteTask, setCurrent })(TaskItem)

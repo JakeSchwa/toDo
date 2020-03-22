@@ -33,14 +33,12 @@ export const getTasks = () => async dispatch => {
 // Add task to server
 export const addTask = task => async dispatch => {
   try {
-    setLoading()
-
     const res = await fetch('/tasks', {
       method: 'POST',
-      body: JSON.stringify(task),
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(task),
     })
     const data = await res.json()
 
@@ -53,6 +51,7 @@ export const addTask = task => async dispatch => {
       type: TASKS_ERROR,
       payload: err.response.statusText,
     })
+    console.error(err)
   }
 }
 

@@ -1,49 +1,49 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "completed": false,
-      "description": "make new app"
-    },
-    {
-      "id": 2,
-      "completed": false,
-      "description": "make new app"
-    },
-    {
-      "id": 3,
-      "completed": false,
-      "description": "make new app"
-    },
-    {
-      "completed": false,
-      "description": "asdfasdf",
-      "id": 4
-    },
-    {
-      "completed": false,
-      "description": "new todo",
-      "id": 5
-    },
-    {
       "completed": false,
       "description": "New todo",
       "id": 6
     },
     {
       "completed": false,
-      "description": "Hello this is a test",
-      "id": 7
+      "description": "Jared is actually the coolest",
+      "id": 10
     },
     {
       "completed": false,
-      "description": "goodbye today",
-      "id": 8
+      "description": "hello",
+      "id": 12
     },
     {
       "completed": false,
-      "description": "Test test test",
-      "id": 9
+      "description": "tab + enter = new todo",
+      "id": 13
+    },
+    {
+      "completed": false,
+      "description": "sdkal;j;asldkf",
+      "id": 14
+    },
+    {
+      "completed": false,
+      "description": "fsadf",
+      "id": 15
+    },
+    {
+      "completed": false,
+      "description": "fasdfsd",
+      "id": 16
+    },
+    {
+      "completed": false,
+      "description": "new todo who this",
+      "id": 17
+    },
+    {
+      "completed": false,
+      "description": "askljdfklajsdf",
+      "id": 18
     }
   ]
 }

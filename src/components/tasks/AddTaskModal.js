@@ -1,24 +1,11 @@
 import React, { useState } from 'react'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import { connect } from 'react-redux'
+import { addTask } from '../../actions/taskActions'
+import PropTypes from 'prop-types'
 
-const AddTaskModal = () => {
+const AddTaskModal = ({ addTask }) => {
   const [description, setDescription] = useState('')
-
-  const addTask = async task => {
-    try {
-      const res = await fetch('/tasks', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(task),
-      })
-      const data = await res.json()
-      console.log(data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
 
   const onSubmit = () => {
     if (description === '') {
@@ -38,6 +25,15 @@ const AddTaskModal = () => {
     }
   }
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      const elem = document.querySelector('#add-task-modal')
+      const instance = M.Modal.getInstance(elem)
+      onSubmit()
+      instance.close()
+    }
+  }
+
   return (
     <div id="add-task-modal" className="modal">
       <div className="modal-content">
@@ -49,6 +45,7 @@ const AddTaskModal = () => {
               name="description"
               value={description}
               onChange={e => setDescription(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
             <label htmlFor="message" className="active">
               Todo Description
@@ -69,4 +66,8 @@ const AddTaskModal = () => {
   )
 }
 
-export default AddTaskModal
+AddTaskModal.propTypes = {
+  addTask: PropTypes.func.isRequired,
+}
+
+export default connect(null, { addTask })(AddTaskModal)
