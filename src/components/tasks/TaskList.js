@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import TaskItem from './TaskItem'
 import { connect } from 'react-redux'
-//import Preloader from "../layout/Preloader";
 import PropTypes from 'prop-types'
 import { getTasks } from '../../actions/taskActions'
-import Preloader from '../layout/Preloader'
+import List from '@material-ui/core/List'
 
 const TaskList = ({ task: { tasks, loading }, getTasks }) => {
   useEffect(() => {
@@ -17,17 +16,10 @@ const TaskList = ({ task: { tasks, loading }, getTasks }) => {
   }
 
   if (loading || tasks === null) {
-    return <Preloader />
+    return "loading..."
   }
 
-  return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4>Tasks</h4>
-      </li>
-      {displayTasks()}
-    </ul>
-  )
+  return <List className="todoList">{displayTasks()}</List>
 }
 
 TaskList.propTypes = {

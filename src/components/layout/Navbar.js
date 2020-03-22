@@ -1,14 +1,17 @@
 import React from 'react'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 
 function Navbar() {
   return (
-    <nav>
-      <div className="nav-wrapper">
-        <a href="!#" className="brand-logo" id="title">
-          Logo
-        </a>
-      </div>
-    </nav>
+    <AppBar>
+      <Typography position="static">
+        <Toolbar>
+          <Typography variant="h6" className="title">
+            Todo
+          </Typography>
+        </Toolbar>
+      </Typography>
+    </AppBar>
   )
 }
 

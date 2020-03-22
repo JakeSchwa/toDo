@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import { connect } from 'react-redux'
 import { updateTask } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
@@ -19,7 +18,7 @@ const EditTaskModal = ({ current, updateTask }) => {
 
   const onSubmit = () => {
     if (description === '') {
-      M.toast({ html: 'Please enter a description' })
+      // M.toast({ html: 'Please enter a description' })
     } else {
       const updatedTask = {
         id: current.id,
@@ -27,7 +26,7 @@ const EditTaskModal = ({ current, updateTask }) => {
       }
 
       updateTask(updatedTask)
-      M.toast({ html: 'Task updated' })
+      // M.toast({ html: 'Task updated' })
 
       // clear fields
       setDescription('')
@@ -36,10 +35,10 @@ const EditTaskModal = ({ current, updateTask }) => {
 
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
-      const elem = document.querySelector('#edit-task-modal')
-      const instance = M.Modal.getInstance(elem)
-      onSubmit()
-      instance.close()
+      // const elem = document.querySelector('#edit-task-modal')
+      // const instance = M.Modal.getInstance(elem)
+      // onSubmit()
+      // instance.close()
     }
   }
 
