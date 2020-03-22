@@ -43,13 +43,11 @@ const AddTaskModal = ({ addTask }) => {
             <input
               type="text"
               name="description"
+              placeholder="Description"
               value={description}
               onChange={e => setDescription(e.target.value)}
               onKeyPress={handleKeyPress}
             />
-            <label htmlFor="message" className="active">
-              Todo Description
-            </label>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import AddBtn from './components/layout/AddBtn'
 import AddTaskModal from './components/tasks/AddTaskModal'
 import TaskList from './components/tasks/TaskList'
 import Navbar from './components/layout/Navbar'
+import EditTaskModal from './components/tasks/EditTaskModal'
 
 const App = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const App = () => {
         <TaskList />
         <AddBtn />
         <AddTaskModal />
+        <EditTaskModal />
       </div>
     </Provider>
   )

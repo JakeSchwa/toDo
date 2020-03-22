@@ -13,6 +13,10 @@ const EditTaskModal = ({ current, updateTask }) => {
     }
   }, [current])
 
+  useEffect(() => {
+    console.log('EDIT MODAL MOUNTED!!')
+  }, [])
+
   const onSubmit = () => {
     if (description === '') {
       M.toast({ html: 'Please enter a description' })
@@ -30,6 +34,15 @@ const EditTaskModal = ({ current, updateTask }) => {
     }
   }
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      const elem = document.querySelector('#edit-task-modal')
+      const instance = M.Modal.getInstance(elem)
+      onSubmit()
+      instance.close()
+    }
+  }
+
   return (
     <div id="edit-task-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
@@ -38,13 +51,12 @@ const EditTaskModal = ({ current, updateTask }) => {
           <div className="input-field">
             <input
               type="text"
-              name="description"
+              placeholder="Description"
+              name="Description"
               value={description}
               onChange={e => setDescription(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
-            <label htmlFor="message" className="active">
-              Todo Description
-            </label>
           </div>
         </div>
       </div>
