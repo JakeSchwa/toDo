@@ -1,36 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deleteTask, setCurrent } from '../../actions/taskActions'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import { setCurrent } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import ListItem from '@material-ui/core/ListItem'
 
-const TaskItem = ({ task, deleteTask, setCurrent }) => {
+//current
+
+const TaskItem = ({ task }) => {
   const { id, description } = task
-  const onDelete = () => {
-    deleteTask(id)
-    M.toast({ html: 'Task Deleted' })
-  }
+  // const onDelete = () => {
+  //   deleteTask(id)
+  //   M.toast({ html: 'Task Deleted' })
+  // }
 
   return (
-    <div>
-      <li className="collection-item">
-        <div>
-          <a
-            href="#edit-task-modal"
-            onClick={() => setCurrent(task)}
-            className="modal-trigger"
-          >
-            {description}
-          </a>
-          <a href="#!" className="secondary-content">
-            <i className="material-icons">send</i>
-          </a>
-          <a href="#!" onClick={onDelete} className="secondary-content">
-            <i className="material-icons">delete</i>
-          </a>
-        </div>
-      </li>
-    </div>
+    <ListItem>
+      <Card key={id} button role={undefined} onClick={null}>
+        <CardContent>{description}</CardContent>
+      </Card>
+    </ListItem>
   )
 }
 
@@ -40,4 +30,6 @@ TaskItem.propTypes = {
   setCurrent: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deleteTask, setCurrent })(TaskItem)
+// TaskItem
+
+export default connect(null, { setCurrent })(TaskItem)

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import { connect } from 'react-redux'
 import { addTask } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
@@ -9,7 +8,7 @@ const AddTaskModal = ({ addTask }) => {
 
   const onSubmit = () => {
     if (description === '') {
-      M.toast({ html: 'Please enter a description for the todo' })
+      // M.toast({ html: 'Please enter a description for the todo' })
     } else {
       const newTask = {
         completed: false,
@@ -18,7 +17,7 @@ const AddTaskModal = ({ addTask }) => {
 
       addTask(newTask)
 
-      M.toast({ html: 'Todo added successfully' })
+      // M.toast({ html: 'Todo added successfully' })
 
       // clear fields
       setDescription('')
@@ -27,10 +26,10 @@ const AddTaskModal = ({ addTask }) => {
 
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
-      const elem = document.querySelector('#add-task-modal')
-      const instance = M.Modal.getInstance(elem)
-      onSubmit()
-      instance.close()
+      // const elem = document.querySelector('#add-task-modal')
+      // const instance = M.Modal.getInstance(elem)
+      // onSubmit()
+      // instance.close()
     }
   }
 
