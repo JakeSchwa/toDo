@@ -1,32 +1,29 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import 'typeface-roboto'
 // redux
 import { Provider } from 'react-redux'
 import store from './store'
-// components
-import AddBtn from './components/layout/AddBtn'
-import AddTaskModal from './components/tasks/AddTaskModal'
+import { Container } from '@material-ui/core'
+// // components
+// import AddBtn from './components/layout/AddBtn'
+// import AddTaskModal from './components/tasks/AddTaskModal'
 import TaskList from './components/tasks/TaskList'
 import Navbar from './components/layout/Navbar'
-import EditTaskModal from './components/tasks/EditTaskModal'
+// import EditTaskModal from './components/tasks/EditTaskModal'
 
 const App = () => {
-  useEffect(() => {
-    // Init Materialize JS
-    M.AutoInit()
-  })
+  useEffect(() => {})
 
   return (
     <Provider store={store}>
-      <Navbar />
-      <div className="container">
+      <Container fixed>
+        <Navbar />
         <TaskList />
-        <AddBtn />
+        {/* <AddBtn />
         <AddTaskModal />
-        <EditTaskModal />
-      </div>
+        <EditTaskModal /> */}
+      </Container>
     </Provider>
   )
 }
