@@ -24,3 +24,14 @@ body {
 .delete-icon {
   visibility: hidden;
 }
+
+#add-task-form {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+#add-task-submit-button {
+  margin-right: auto !important;
+  width: 150px;
+  margin-left: 20px;
+}

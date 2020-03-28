@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { Container } from '@material-ui/core'
 // // components
-// import AddBtn from './components/layout/AddBtn'
+import AddTaskForm from './components/layout/AddTaskForm'
 // import AddTaskModal from './components/tasks/AddTaskModal'
 import TaskList from './components/tasks/TaskList'
 import Navbar from './components/layout/Navbar'
@@ -19,9 +19,9 @@ const App = () => {
     <Provider store={store}>
       <Navbar />
       <Container>
+        <AddTaskForm />
         <TaskList />
-        {/* <AddBtn />
-        <AddTaskModal />
+        {/* <AddTaskModal />
         <EditTaskModal /> */}
       </Container>
     </Provider>
