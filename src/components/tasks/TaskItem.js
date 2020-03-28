@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deleteTask } from '../../actions/taskActions'
+import { deleteTask, updateTask } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
 import {
   ListItem,
@@ -12,18 +12,29 @@ import {
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-const TaskItem = ({ task, deleteTask }) => {
-  const { id, description } = task
+const TaskItem = ({ task, deleteTask, updateTask }) => {
+  const { id, description, completed } = task
 
   const onDelete = () => {
     deleteTask(id)
   }
 
-  return (
+  const onComplete = event => {
+    if (event.target.checked) {
+      const completedTask = {
+        id,
+        description,
+        completed: true,
+      }
+      updateTask(completedTask)
+    }
+  }
+
+  return !completed ? (
     <div className="task-item-container">
       <ListItem button divider={true}>
         <ListItemIcon>
-          <Checkbox edge="start" />
+          <Checkbox edge="start" onChange={onComplete} />
         </ListItemIcon>
         <ListItemText id={`task-id-${id}`} primary={description} />
         <ListItemSecondaryAction>
@@ -35,12 +46,13 @@ const TaskItem = ({ task, deleteTask }) => {
         </ListItemSecondaryAction>
       </ListItem>
     </div>
-  )
+  ) : null
 }
 
 TaskItem.propTypes = {
   task: PropTypes.object.isRequired,
   deleteTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deleteTask })(TaskItem)
+export default connect(null, { deleteTask, updateTask })(TaskItem)

@@ -1,32 +1,34 @@
 {
   "tasks": [
     {
-      "completed": false,
+      "id": 12,
       "description": "hello",
-      "id": 12
+      "completed": false
     },
     {
-      "completed": false,
+      "id": 13,
       "description": "tab + enter = new todo",
-      "id": 13
+      "completed": false
     },
     {
-      "completed": false,
+      "id": 15,
       "description": "fsadf",
-      "id": 15
+      "completed": false
     },
     {
-      "completed": false,
+      "id": 16,
       "description": "fasdfsd",
-      "id": 16
+      "completed": true
     },
     {
       "id": 17,
-      "description": "new todo who this"
+      "description": "new todo who this",
+      "completed": false
     },
     {
       "id": 19,
-      "description": "This is a test 2"
+      "description": "This is a test 2",
+      "completed": false
     }
   ]
 }
