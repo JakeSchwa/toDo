@@ -1,33 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setCurrent } from '../../actions/taskActions'
+import { deleteTask } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import ListItem from '@material-ui/core/ListItem'
+import {
+  ListItem,
+  ListItemIcon,
+  Checkbox,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-//current
-
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, deleteTask }) => {
   const { id, description } = task
-  // const onDelete = () => {
-  //   deleteTask(id)
-  //   M.toast({ html: 'Task Deleted' })
-  // }
+
+  const onDelete = () => {
+    deleteTask(id)
+  }
 
   return (
-    <ListItem button>
-      <Card key={id} style={{ width: '100%' }}>
-        <CardContent>{description}</CardContent>
-      </Card>
-    </ListItem>
+    <div className="task-item-container">
+      <ListItem button divider={true}>
+        <ListItemIcon>
+          <Checkbox edge="start" />
+        </ListItemIcon>
+        <ListItemText id={`task-id-${id}`} primary={description} />
+        <ListItemSecondaryAction>
+          <div className="delete-icon">
+            <IconButton edge="end" aria-label="delete" onClick={onDelete}>
+              <DeleteIcon />
+            </IconButton>
+          </div>
+        </ListItemSecondaryAction>
+      </ListItem>
+    </div>
   )
 }
 
 TaskItem.propTypes = {
   task: PropTypes.object.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  setCurrent: PropTypes.func.isRequired,
 }
 
-export default connect(null, { setCurrent })(TaskItem)
+export default connect(null, { deleteTask })(TaskItem)

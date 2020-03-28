@@ -12,3 +12,15 @@ body {
   width: 75%;
   height: 75%;
 }
+
+.task-item-container:hover {
+  background-color: #f500562a;
+}
+
+.task-item-container:hover .delete-icon {
+  visibility: visible;
+}
+
+.delete-icon {
+  visibility: hidden;
+}
