@@ -1,44 +1,14 @@
 {
   "tasks": [
     {
-      "id": 12,
-      "description": "hello new WORLD",
-      "completed": false
+      "completed": false,
+      "description": "                  There are white spaces at the begining of this and at the end                     ",
+      "id": 14
     },
     {
-      "id": 13,
-      "description": "tab + enter = new to",
-      "completed": false
-    },
-    {
-      "id": 15,
-      "description": "fsadf",
-      "completed": false
-    },
-    {
-      "id": 16,
-      "description": "fasdfsd",
-      "completed": true
-    },
-    {
-      "id": 17,
-      "description": "new todo who this",
-      "completed": true
-    },
-    {
-      "id": 20,
-      "description": "hello new test",
-      "completed": true
-    },
-    {
-      "id": 21,
-      "description": "hello new",
-      "completed": true
-    },
-    {
-      "id": 22,
-      "description": "new task, who this",
-      "completed": false
+      "completed": false,
+      "description": "       ok this is test number 2.     ",
+      "id": 15
     }
   ]
 }
