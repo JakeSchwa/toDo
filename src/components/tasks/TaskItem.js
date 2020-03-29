@@ -30,7 +30,7 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
     }
   }
 
-  return !completed ? (
+  return completed === false ? (
     <div className="task-item-container">
       <ListItem button divider={true}>
         <ListItemIcon>
