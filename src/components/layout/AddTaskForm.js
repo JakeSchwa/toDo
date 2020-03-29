@@ -9,20 +9,20 @@ import CardContent from '@material-ui/core/CardContent'
 
 const AddTaskForm = ({ addTask }) => {
   const [description, setDescription] = useState('')
-  const [showError, setShowError] = useState(false)
+  const [error, setError] = useState(false)
   const [helperText, setHelperText] = useState(' ')
 
   const handleSubmit = event => {
-    setDescription(description.trim())
     if (taskIsValid()) {
       postTask()
-      setDescription('')
+    } else {
+      showError(true)
     }
+    setDescription('')
     event.preventDefault()
   }
 
   const postTask = () => {
-    setDescription()
     const newTask = {
       completed: false,
       description,
@@ -30,34 +30,39 @@ const AddTaskForm = ({ addTask }) => {
     addTask(newTask)
   }
 
+  const showError = isError => {
+    if (isError) {
+      setError(true)
+      setHelperText('Include Task Description')
+    } else {
+      setError(false)
+      setHelperText(' ')
+    }
+  }
+
   const taskIsValid = () => {
     if (description.trim() === '') {
-      setShowError(true)
-      setHelperText('Include Task Description')
       return false
     }
-    setShowError(false)
-    setHelperText(' ')
-    setDescription('')
     return true
   }
 
   const handleChange = event => {
     if (event.target.value.trim() !== '') {
-      setShowError(false)
+      showError(false)
     }
     setDescription(event.target.value)
   }
 
   return (
-    <Card>
+    <Card id="add-task-card">
       <CardContent>
         <form onSubmit={handleSubmit} id="add-task-form">
           <TextField
             id="add-task-input"
             placeholder="Task Description"
             onChange={handleChange}
-            error={showError}
+            error={error}
             value={description}
             helperText={helperText}
             autoComplete="off"
