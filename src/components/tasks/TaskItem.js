@@ -18,15 +18,21 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
   const { id, completed } = task
   const [taskDescription, setTaskDescription] = useState(task.description)
   const [isEditing, setIsEditing] = useState(false)
+  const [error, setError] = useState(false)
 
   const onSave = () => {
-    const editedTask = {
-      id,
-      description: taskDescription,
-      completed,
+    if (taskDescription.trim() !== '') {
+      const editedTask = {
+        id,
+        description: taskDescription,
+        completed,
+      }
+      updateTask(editedTask)
+      setIsEditing(false)
+    } else {
+      setError(true)
+      setTaskDescription('')
     }
-    updateTask(editedTask)
-    setIsEditing(false)
   }
 
   const onCancel = () => {
@@ -58,9 +64,15 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
         {isEditing ? (
           <>
             <TextField
+              fullWidth
               value={taskDescription}
               autoFocus={true}
-              onChange={event => setTaskDescription(event.target.value)}
+              error={error}
+              required={true}
+              onChange={event => {
+                setError(false)
+                setTaskDescription(event.target.value)
+              }}
             />
             <Button onClick={onSave}>Save</Button>
             <Button onClick={onCancel}>Cancel</Button>
