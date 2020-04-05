@@ -6,37 +6,17 @@ import { addTask } from '../../actions/taskActions'
 import PropTypes from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Snackbar from '@material-ui/core/Snackbar'
+import { showSnack } from '../../actions/snackAction'
 
-const AddTaskForm = ({ addTask }) => {
+const AddTaskForm = ({ addTask, showSnack }) => {
   const [description, setDescription] = useState('')
   const [error, setError] = useState(false)
   const [helperText, setHelperText] = useState(' ')
-  const [showSnack, setShowSnack] = useState(false)
-
-  const handleClose = () => {
-    setShowSnack(false)
-  }
-
-  const displaySnackBar = () => {
-    return (
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={showSnack}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message="Task Added"
-      />
-    )
-  }
 
   const handleSubmit = event => {
     if (taskIsValid()) {
       postTask()
-      setShowSnack(true)
+      showSnack('Task Added')
     } else {
       showError(true)
     }
@@ -78,7 +58,6 @@ const AddTaskForm = ({ addTask }) => {
 
   return (
     <>
-      {displaySnackBar()}
       <Card id="add-task-card">
         <CardContent>
           <form onSubmit={handleSubmit} id="add-task-form">
@@ -109,6 +88,7 @@ const AddTaskForm = ({ addTask }) => {
 
 AddTaskForm.propTypes = {
   addTask: PropTypes.func.isRequired,
+  showSnack: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addTask })(AddTaskForm)
+export default connect(null, { addTask, showSnack })(AddTaskForm)

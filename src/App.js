@@ -10,6 +10,7 @@ import AddTaskForm from './components/layout/AddTaskForm'
 // import AddTaskModal from './components/tasks/AddTaskModal'
 import TaskList from './components/tasks/TaskList'
 import Navbar from './components/layout/Navbar'
+import SnackBar from './components/layout/SnackBar'
 // import EditTaskModal from './components/tasks/EditTaskModal'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <SnackBar />
       <Navbar />
       <Container id="container">
         <AddTaskForm />
