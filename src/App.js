@@ -7,11 +7,9 @@ import store from './store'
 import { Container } from '@material-ui/core'
 // // components
 import AddTaskForm from './components/layout/AddTaskForm'
-// import AddTaskModal from './components/tasks/AddTaskModal'
 import TaskList from './components/tasks/TaskList'
 import Navbar from './components/layout/Navbar'
 import SnackBar from './components/layout/SnackBar'
-// import EditTaskModal from './components/tasks/EditTaskModal'
 
 const App = () => {
   useEffect(() => {})
@@ -23,8 +21,6 @@ const App = () => {
       <Container id="container">
         <AddTaskForm />
         <TaskList />
-        {/* <AddTaskModal />
-        <EditTaskModal /> */}
       </Container>
     </Provider>
   )

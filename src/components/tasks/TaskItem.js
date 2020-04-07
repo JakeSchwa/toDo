@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { deleteTask, updateTask } from '../../actions/taskActions'
+import {
+  deleteTask,
+  updateTask,
+  setCurrent,
+  clearCurrent,
+} from '../../actions/taskActions'
 import PropTypes from 'prop-types'
 import {
   ListItem,
@@ -14,10 +19,16 @@ import {
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-const TaskItem = ({ task, deleteTask, updateTask }) => {
+const TaskItem = ({
+  task,
+  deleteTask,
+  updateTask,
+  setCurrent,
+  clearCurrent,
+  current,
+}) => {
   const { id, completed } = task
   const [taskDescription, setTaskDescription] = useState(task.description)
-  const [isEditing, setIsEditing] = useState(false)
   const [error, setError] = useState(false)
 
   const onSave = () => {
@@ -28,7 +39,7 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
         completed,
       }
       updateTask(editedTask)
-      setIsEditing(false)
+      clearCurrent()
     } else {
       setError(true)
       setTaskDescription('')
@@ -37,11 +48,12 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
 
   const onCancel = () => {
     setTaskDescription(task.description)
-    setIsEditing(false)
+    clearCurrent()
   }
 
   const onDelete = () => {
     deleteTask(id)
+    clearCurrent()
   }
 
   const onComplete = event => {
@@ -61,7 +73,7 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
         <ListItemIcon>
           <Checkbox edge="start" onChange={onComplete} />
         </ListItemIcon>
-        {isEditing ? (
+        {current === task ? (
           <>
             <TextField
               fullWidth
@@ -81,7 +93,7 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
           <ListItemText
             id={`task-id-${id}`}
             primary={taskDescription}
-            onClick={() => setIsEditing(true)}
+            onClick={() => setCurrent(task)}
           />
         )}
         <ListItemSecondaryAction>
@@ -96,10 +108,22 @@ const TaskItem = ({ task, deleteTask, updateTask }) => {
   ) : null
 }
 
+const mapStateToProps = state => ({
+  current: state.task.current,
+})
+
 TaskItem.propTypes = {
   task: PropTypes.object.isRequired,
+  current: PropTypes.object.isRequired,
   deleteTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
+  clearCurrent: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deleteTask, updateTask })(TaskItem)
+export default connect(mapStateToProps, {
+  deleteTask,
+  updateTask,
+  clearCurrent,
+  setCurrent,
+})(TaskItem)
