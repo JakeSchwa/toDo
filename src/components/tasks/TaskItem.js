@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import {
   deleteTask,
@@ -29,19 +29,34 @@ const TaskItem = ({
 }) => {
   const { id, completed } = task
   const [taskDescription, setTaskDescription] = useState(task.description)
-  const [error, setError] = useState(false)
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (current !== task) {
+      if (!isSaving) setTaskDescription(task.description)
+      else setIsSaving(false)
+      setIsSaveDisabled(false)
+    }
+    // eslint-disable-next-line
+  }, [current])
 
   const onSave = () => {
-    if (taskDescription.trim() !== '') {
-      const editedTask = {
-        id,
-        description: taskDescription,
-        completed,
+    const description = taskDescription.trim()
+    if (description !== '') {
+      setIsSaving(true)
+      if (description !== task.description) {
+        const editedTask = {
+          id,
+          description,
+          completed,
+        }
+        updateTask(editedTask)
       }
-      updateTask(editedTask)
       clearCurrent()
     } else {
-      setError(true)
+      setIsSaveDisabled(true)
       setTaskDescription('')
     }
   }
@@ -67,26 +82,46 @@ const TaskItem = ({
     }
   }
 
+  const onTextFieldChange = event => {
+    const text = event.target.value.trim()
+    if (text !== '') {
+      setIsSaveDisabled(false)
+    } else if (text === '') {
+      setIsSaveDisabled(true)
+    }
+    setTaskDescription(event.target.value)
+  }
+
+  const onTextFieldBlur = () => {
+    if (isSaveDisabled) {
+      inputRef.current.focus()
+    }
+  }
+
   return completed === false ? (
     <div className="task-item-container">
-      <ListItem button divider={true}>
+      <ListItem divider={true}>
         <ListItemIcon>
           <Checkbox edge="start" onChange={onComplete} />
         </ListItemIcon>
         {current === task ? (
           <>
             <TextField
-              fullWidth
+              inputRef={inputRef}
+              fullWidth={true}
               value={taskDescription}
               autoFocus={true}
-              error={error}
               required={true}
-              onChange={event => {
-                setError(false)
-                setTaskDescription(event.target.value)
-              }}
+              onChange={onTextFieldChange}
+              onBlur={onTextFieldBlur}
             />
-            <Button onClick={onSave}>Save</Button>
+            <Button
+              variant="contained"
+              disabled={isSaveDisabled}
+              onClick={onSave}
+            >
+              Save
+            </Button>
             <Button onClick={onCancel}>Cancel</Button>
           </>
         ) : (
@@ -109,7 +144,7 @@ const TaskItem = ({
 }
 
 const mapStateToProps = state => ({
-  current: state.task.current,
+  current: state.task.current === null ? {} : state.task.current,
 })
 
 TaskItem.propTypes = {
